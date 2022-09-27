@@ -1,0 +1,7 @@
+icalendar~=4.1.0
+PyQRCode~=1.2.1
+requests~=2.28.1
+drawing~=0.0.3
+setuptools~=56.0.0
+Adafruit-Thermal
+recurring-ical-events

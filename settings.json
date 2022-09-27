@@ -1,0 +1,30 @@
+{
+  "calendars": {
+    "School": "https://outlook.office365.com/owa/calendar/412f8b78a8564989926618247daea585@psu.edu/2cd13fc6692a4dfa978b34987cb2277a8238352227218615013/calendar.ics",
+    "Personal": "https://p71-caldav.icloud.com/published/2/MTY4Njk4MjQ4NjAxNjg2OUkA_BmX5UzH5rSvF5SwlIEXsORegc3ndydzGjQdvBCe",
+    "Family": "https://p71-caldav.icloud.com/published/2/MTY4Njk4MjQ4NjAxNjg2OUkA_BmX5UzH5rSvF5SwlIHdQtKK2Blxp39QaXZJbzGagcAtA1ewsskMgUHIAOpeV-OHMazKljffEQIYmOMtqsk",
+    "Work": "https://p71-caldav.icloud.com/published/2/MTY4Njk4MjQ4NjAxNjg2OUkA_BmX5UzH5rSvF5SwlIFA9IsJGmQmyPJL3YEE9lJc"
+  },
+  "weather": {
+    "gridX": 39,
+    "gridY": 86,
+    "WFO": "PHI",
+    "Units": "si",
+    "Detailed": 1,
+    "Hourly": 1,
+    "Hours": 24
+  },
+  "news": {
+    "country": "us"
+  },
+  "modules": {
+    "quote": 1,
+    "national day": 1,
+    "weather": 1,
+    "calendar": 1,
+    "news": 0
+  },
+  "general": {
+    "name": "Jacob"
+  }
+}
