@@ -5,3 +5,4 @@ drawing~=0.0.3
 setuptools~=56.0.0
 Adafruit-Thermal
 recurring-ical-events
+Pillow

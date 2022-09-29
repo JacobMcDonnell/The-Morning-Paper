@@ -8,44 +8,53 @@ gridX = weather["gridX"]
 gridY = weather["gridY"]
 wfo = weather["WFO"]
 units = weather["Units"]  # either si or us
-hourly = weather["Hourly"]
-detailed = weather["Detailed"]
 hours = weather["Hours"]
 
 
-def getForecast():
+def getHourlyForecast():
     output = []
 
-    dayForecastUrl = f"https://api.weather.gov/gridpoints/{wfo}/{gridX},{gridY}/forecast?units={units}"
+
     hourlyForecastUrl = f"https://api.weather.gov/gridpoints/{wfo}/{gridX},{gridY}/forecast/hourly?units={units}"
 
-    dayResp = requests.get(dayForecastUrl)
     hourResp = requests.get(hourlyForecastUrl)
 
-    while (dayResp.status_code != 200) and (hourResp.status_code != 200):
-        dayResp = requests.get(dayForecastUrl)
+    while hourResp.status_code != 200:
         hourResp = requests.get(hourlyForecastUrl)
         sleep(10)
 
-    dayData = json.loads(dayResp.text)
     hourData = json.loads(hourResp.text)
-    dayPeriods = dayData["properties"]["periods"]
     hourPeriods = hourData["properties"]["periods"]
+
+    output.append(f"{hours} Hour Forecast")
+    for i in range(hours):
+        forecast = hourPeriods[i]
+        sTime = datetime.strptime(forecast["startTime"], "%Y-%m-%dT%H:%M:%S%z")
+        formatTime = sTime.strftime("%m-%d %H:%M")
+        temp = str(forecast["temperature"]) + "°" + forecast["temperatureUnit"] + " " + forecast["shortForecast"]
+        hourlyForecast = f"{formatTime}: {temp}"
+        output.append(hourlyForecast)
+
+    return output
+
+
+def getDetailedForecast():
+    output = []
+
+    dayForecastUrl = f"https://api.weather.gov/gridpoints/{wfo}/{gridX},{gridY}/forecast?units={units}"
+    dayResp = requests.get(dayForecastUrl)
+
+    while dayResp.status_code != 200:
+        dayResp = requests.get(dayForecastUrl)
+        sleep(10)
+
+    dayData = json.loads(dayResp.text)
+    dayPeriods = dayData["properties"]["periods"]
 
     todayFor = dayPeriods[0]
     tonightFor = dayPeriods[1]
 
-    if detailed:
-        output.append("Today's Forecast: " + todayFor["detailedForecast"])
-        output.append("\nTonight's Forecast: " + tonightFor["detailedForecast"] + "\n")
+    output.append("Today's Forecast: " + todayFor["detailedForecast"])
+    output.append("\nTonight's Forecast: " + tonightFor["detailedForecast"] + "\n")
 
-    if hourly:
-        output.append(f"{hours} Hour Forecast")
-        for i in range(hours):
-            forecast = hourPeriods[i]
-            sTime = datetime.strptime(forecast["startTime"], "%Y-%m-%dT%H:%M:%S%z")
-            formatTime = sTime.strftime("%m-%d %H:%M")
-            temp = str(forecast["temperature"]) + "°" + forecast["temperatureUnit"] + " " + forecast["shortForecast"]
-            hourlyForecast = f"{formatTime}: {temp}"
-            output.append(hourlyForecast)
     return output

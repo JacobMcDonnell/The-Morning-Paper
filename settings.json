@@ -10,8 +10,6 @@
     "gridY": 86,
     "WFO": "PHI",
     "Units": "si",
-    "Detailed": 1,
-    "Hourly": 1,
     "Hours": 24
   },
   "news": {
@@ -20,11 +18,13 @@
   "modules": {
     "quote": 1,
     "national day": 1,
-    "weather": 1,
+    "Detailed": 1,
+    "Hourly": 1,
     "calendar": 1,
     "news": 0
   },
   "general": {
-    "name": "Jacob"
+    "name": "Jacob",
+    "Line Width": 32
   }
 }

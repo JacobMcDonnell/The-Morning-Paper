@@ -11,8 +11,7 @@ interface with the
 [adafruit thermal printer used](https://www.adafruit.com/product/600).
 
 ## TODO
-- Better line formatting
-- Switch to Adafruit Thermal print library
+- Timer for the main function
 - Stock Tracker
 - Better error handling
 - Test print page with ip address
