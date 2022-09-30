@@ -17,6 +17,7 @@ interface with the
 - Test print page with ip address
 - Web interface for settings
   - Settings print out with qr code to ip address
+- Fix the Phantom j
 
 ## Parts
 - [Adafruit Thermal Printer](https://www.adafruit.com/product/600)

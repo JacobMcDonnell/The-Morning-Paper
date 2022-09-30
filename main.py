@@ -9,11 +9,10 @@ from time import sleep
 from Adafruit_Thermal import *
 from textwrap import fill
 from ipqr import getQrCode
-from PIL import Image
 
 name = general["name"]
 today = datetime.date.today().strftime("%A %m-%d-%Y")
-printer = Adafruit_Thermal("/dev/ttyS0", 19200, timeout=5)
+printer = Adafruit_Thermal("/dev/serial0", 19200, timeout=5)
 
 output = ["The Morning Paper:", f"Good Morning {name}, Today is {today}"]
 
@@ -40,9 +39,8 @@ def printSettingsPage():
     printer.println("Settings")
     try:
         getQrCode()
-        qr = Image.open(r"ipqr.png")
         printer.println(fill("Scan the QR Code below to access settings", lineWidth))
-        printer.printImage(qr)
+        printer.printImage("ipqr.png")
     except:
         printer.println("No Network Connection")
 
