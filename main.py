@@ -7,7 +7,9 @@ import datetime
 from settings import modules, general, lineWidth
 from time import sleep
 from Adafruit_Thermal import *
-import textwrap
+from textwrap import fill
+from ipqr import getQrCode
+from PIL import Image
 
 name = general["name"]
 today = datetime.date.today().strftime("%A %m-%d-%Y")
@@ -30,8 +32,19 @@ def main():
         if modules[module]:
             for line in mods[module]:
                 line = line.replace("\n", "")
-                printer.println(textwrap.fill(line, lineWidth))
+                printer.println(fill(line, lineWidth))
             printer.feed(1)
+
+
+def printSettingsPage():
+    printer.println("Settings")
+    try:
+        getQrCode()
+        qr = Image.open(r"ipqr.png")
+        printer.println(fill("Scan the QR Code below to access settings", lineWidth))
+        printer.printImage(qr)
+    except:
+        printer.println("No Network Connection")
 
 
 printer.wake()
@@ -39,12 +52,14 @@ printer.setSize('M')
 sleep(10)
 
 for line in output:
-    printer.println(textwrap.fill(line, lineWidth))
+    printer.println(fill(line, lineWidth))
 try:
     main()
 except:
     sleep(30)
     main()
+
+printSettingsPage()
 
 printer.feed(6)
 printer.sleep()
