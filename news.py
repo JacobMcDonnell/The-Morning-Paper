@@ -10,21 +10,21 @@ url = f"https://newsapi.org/v2/top-headlines?country={countryCode}&apiKey={apiKe
 
 
 def getHeadlines():
-    resp = requests.get(url)
-    while resp.status_code != 200:
-        resp = requests.get(url)
-        sleep(10)
+	resp = requests.get(url)
+	while resp.status_code != 200:
+		resp = requests.get(url)
+		sleep(10)
 
-    respData = json.loads(resp.text)
+	respData = json.loads(resp.text)
 
-    articles = respData["articles"]
+	articles = respData["articles"]
 
-    output = ["Top 5 Headlines in the US:"]
+	output = ["Top 5 Headlines in the US:"]
 
-    for i in range(5):
-        article = articles[i]
-        title = article["title"]
-        output.append(title)
-        output.append("\n")
+	for i in range(5):
+		article = articles[i]
+		title = article["title"]
+		output.append(title)
+		output.append("\n")
 
-    return output
+	return output

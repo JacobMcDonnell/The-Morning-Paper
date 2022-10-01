@@ -12,49 +12,48 @@ hours = weather["Hours"]
 
 
 def getHourlyForecast():
-    output = []
+	output = []
 
+	hourlyForecastUrl = f"https://api.weather.gov/gridpoints/{wfo}/{gridX},{gridY}/forecast/hourly?units={units}"
 
-    hourlyForecastUrl = f"https://api.weather.gov/gridpoints/{wfo}/{gridX},{gridY}/forecast/hourly?units={units}"
+	hourResp = requests.get(hourlyForecastUrl)
 
-    hourResp = requests.get(hourlyForecastUrl)
+	while hourResp.status_code != 200:
+		hourResp = requests.get(hourlyForecastUrl)
+		sleep(10)
 
-    while hourResp.status_code != 200:
-        hourResp = requests.get(hourlyForecastUrl)
-        sleep(10)
+	hourData = json.loads(hourResp.text)
+	hourPeriods = hourData["properties"]["periods"]
 
-    hourData = json.loads(hourResp.text)
-    hourPeriods = hourData["properties"]["periods"]
+	output.append(f"{hours} Hour Forecast")
+	for i in range(hours):
+		forecast = hourPeriods[i]
+		sTime = datetime.strptime(forecast["startTime"], "%Y-%m-%dT%H:%M:%S%z")
+		formatTime = sTime.strftime("%m-%d %H:%M")
+		temp = str(forecast["temperature"]) + "°" + forecast["temperatureUnit"] + " " + forecast["shortForecast"]
+		hourlyForecast = f"{formatTime}: {temp}"
+		output.append(hourlyForecast)
 
-    output.append(f"{hours} Hour Forecast")
-    for i in range(hours):
-        forecast = hourPeriods[i]
-        sTime = datetime.strptime(forecast["startTime"], "%Y-%m-%dT%H:%M:%S%z")
-        formatTime = sTime.strftime("%m-%d %H:%M")
-        temp = str(forecast["temperature"]) + "°" + forecast["temperatureUnit"] + " " + forecast["shortForecast"]
-        hourlyForecast = f"{formatTime}: {temp}"
-        output.append(hourlyForecast)
-
-    return output
+	return output
 
 
 def getDetailedForecast():
-    output = []
+	output = []
 
-    dayForecastUrl = f"https://api.weather.gov/gridpoints/{wfo}/{gridX},{gridY}/forecast?units={units}"
-    dayResp = requests.get(dayForecastUrl)
+	dayForecastUrl = f"https://api.weather.gov/gridpoints/{wfo}/{gridX},{gridY}/forecast?units={units}"
+	dayResp = requests.get(dayForecastUrl)
 
-    while dayResp.status_code != 200:
-        dayResp = requests.get(dayForecastUrl)
-        sleep(10)
+	while dayResp.status_code != 200:
+		dayResp = requests.get(dayForecastUrl)
+		sleep(10)
 
-    dayData = json.loads(dayResp.text)
-    dayPeriods = dayData["properties"]["periods"]
+	dayData = json.loads(dayResp.text)
+	dayPeriods = dayData["properties"]["periods"]
 
-    todayFor = dayPeriods[0]
-    tonightFor = dayPeriods[1]
+	todayFor = dayPeriods[0]
+	tonightFor = dayPeriods[1]
 
-    output.append("Today's Forecast: " + todayFor["detailedForecast"])
-    output.append("\nTonight's Forecast: " + tonightFor["detailedForecast"] + "\n")
+	output.append("Today's Forecast: " + todayFor["detailedForecast"])
+	output.append("\nTonight's Forecast: " + tonightFor["detailedForecast"] + "\n")
 
-    return output
+	return output

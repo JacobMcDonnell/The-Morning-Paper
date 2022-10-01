@@ -16,7 +16,7 @@ interface with the
 - Better error handling
 - Test print page with ip address
 - Web interface for settings
-  - Settings print out with qr code to ip address
+  ~~- Settings print out with qr code to ip address~~
 - Fix the Phantom j
 
 ## Parts
