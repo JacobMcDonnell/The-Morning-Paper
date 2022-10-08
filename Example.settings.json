@@ -1,0 +1,28 @@
+{
+  "calendars": {
+    "NAME": "URL"
+  },
+  "weather": {
+    "gridX": 39,
+    "gridY": 86,
+    "WFO": "PHI",
+    "Units": "si",
+    "Hours": 24
+  },
+  "news": {
+    "country": "us",
+    "apikey": "API KEY NEEDED"
+  },
+  "modules": {
+    "quote": 1,
+    "national day": 1,
+    "Detailed": 1,
+    "Hourly": 1,
+    "calendar": 1,
+    "news": 0
+  },
+  "general": {
+    "name": "yourName",
+    "Line Width": 32
+  }
+}

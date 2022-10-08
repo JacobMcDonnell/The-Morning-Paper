@@ -3,7 +3,7 @@ import json
 from time import sleep
 from settings import news
 
-apiKey = "17d4d578091e47db9791e84d790391b5"
+apiKey = news["apikey"]
 countryCode = news["country"]
 
 url = f"https://newsapi.org/v2/top-headlines?country={countryCode}&apiKey={apiKey}"

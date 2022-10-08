@@ -11,6 +11,7 @@ interface with the
 [adafruit thermal printer used](https://www.adafruit.com/product/600).
 
 ## TODO
+- Add comments to all functions for better documentation
 - Timer for the main function
 - Stock Tracker
 - Better error handling
@@ -28,3 +29,7 @@ interface with the
 - [National Weather Service](https://www.weather.gov/documentation/services-web-api)
 - [News API](https://newsapi.org/)
 - [National Day API](https://national-api-day.herokuapp.com)
+
+## Setup
+Rename Example.settings.json to settings.json and fill in the needed 
+information.
