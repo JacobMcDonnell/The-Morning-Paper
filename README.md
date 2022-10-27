@@ -1,13 +1,13 @@
 # The Morning Paper
-The Morning Paper is a project that prints out different information to a 
-receipt printer in the morning. The project will include template modules for 
-today's calendar events, the weather, a quote, top news headlines, and the 
+The Morning Paper is a project that prints out different information to a
+receipt printer in the morning. The project will include template modules for
+today's calendar events, the weather, a quote, top news headlines, and the
 national day.
 
 ## Modules
-The modules provided are written in python and will use the [adafruit thermal 
-printer library](https://github.com/adafruit/Python-Thermal-Printer) to 
-interface with the 
+The modules provided are written in python and will use the [adafruit thermal
+printer library](https://github.com/adafruit/Python-Thermal-Printer) to
+interface with the
 [adafruit thermal printer used](https://www.adafruit.com/product/600).
 
 ## TODO
@@ -19,6 +19,10 @@ interface with the
 - Web interface for settings
   ~~- Settings print out with qr code to ip address~~
 - Fix the Phantom j
+- Migrate to the RPI Pico W
+  - Use their wireless packages to connect to internet
+  - Decide how to handle storing wireless
+  - Look into the [Circutpython Printer Library](https://learn.adafruit.com/mini-thermal-receipt-printer/circuitpython)
 
 ## Parts
 - [Adafruit Thermal Printer](https://www.adafruit.com/product/600)
@@ -31,5 +35,5 @@ interface with the
 - [National Day API](https://national-api-day.herokuapp.com)
 
 ## Setup
-Rename Example.settings.json to settings.json and fill in the needed 
+Rename Example.settings.json to settings.json and fill in the needed
 information.
