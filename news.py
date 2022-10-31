@@ -1,8 +1,9 @@
 import requests
 import json
 from time import sleep
-from settings import news
+from settings import getSettings
 
+news = getSettings("news")
 apiKey = news["apikey"]
 countryCode = news["country"]
 

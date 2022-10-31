@@ -2,8 +2,9 @@ import requests
 import json
 from time import sleep
 from datetime import datetime
-from settings import weather
+from settings import getSettings
 
+weather = getSettings("weather")
 gridX = weather["gridX"]
 gridY = weather["gridY"]
 wfo = weather["WFO"]

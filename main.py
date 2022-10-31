@@ -4,13 +4,17 @@ from news import getHeadlines
 from quote import getQuote
 from weather import getHourlyForecast, getDetailedForecast
 import datetime
-from settings import modules, general, lineWidth
+from settings import getSettings
 from time import sleep
 from Adafruit_Thermal import *
 from textwrap import fill
 from ipqr import getQrCode
 
+general = getSettings("general")
+modules = getSettings("modules")
+
 name = general["name"]
+lineWidth = general["Line Width"]
 today = datetime.date.today().strftime("%A %m-%d-%Y")
 printer = Adafruit_Thermal("/dev/serial0", 19200, timeout=5)
 

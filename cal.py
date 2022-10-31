@@ -2,8 +2,9 @@ import icalendar
 import recurring_ical_events
 import urllib.request
 import datetime
-from settings import calendars
+from settings import getSettings
 
+calendars = getSettings("calendars")
 today = datetime.date.today()
 output = []
 

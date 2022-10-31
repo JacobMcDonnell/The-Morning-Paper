@@ -1,14 +1,14 @@
 import json
+from logging import exception
 
-settingsJSON = open('settings.json')
+def getSettings(settingSection):
+    try:
+        settingsJSON = open("settings.json", "r")
+    except FileNotFoundError:
+       exception("settings.json not found make sure it exists in this folder")
 
-settings = json.load(settingsJSON)
+    settings = json.load(settingsJSON)
+    settingsJSON.close()
 
-calendars = settings["calendars"]
-weather = settings["weather"]
-news = settings["news"]
-modules = settings["modules"]
-general = settings["general"]
-lineWidth = settings["general"]["Line Width"]
+    return settings[settingSection]
 
-settingsJSON.close()
